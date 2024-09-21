@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     }
    public void Movement()
     {
-        Vector3 Movement = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxis("Vertical"), 0);
+        Vector3 Movement = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
         transform.position += Movement * moveSpeed * Time.deltaTime;
     }
 }

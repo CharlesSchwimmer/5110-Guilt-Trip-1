@@ -532,7 +532,7 @@ GameObject:
   - component: {fileID: 285287806}
   - component: {fileID: 285287805}
   m_Layer: 0
-  m_Name: Circle
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -619,7 +619,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 765d7de6599b6cb4c8cce5e3be20a1fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 2
+  moveSpeed: 5
 --- !u!50 &285287805
 Rigidbody2D:
   serializedVersion: 4
@@ -634,7 +634,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 1
-  m_AngularDrag: 0
+  m_AngularDrag: 1
   m_GravityScale: 0
   m_Material: {fileID: 6200000, guid: 741ea3e51934b584da1900b854260cab, type: 2}
   m_IncludeLayers:
