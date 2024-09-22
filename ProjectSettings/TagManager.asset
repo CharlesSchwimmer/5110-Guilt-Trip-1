@@ -8,7 +8,7 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Walls
   - Water
   - UI
   - 
@@ -38,6 +38,18 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 3647446235
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Faders
+    uniqueID: 2648887585
+    locked: 0
+  - name: Walls
+    uniqueID: 2910306299
+    locked: 0
+  - name: Player
+    uniqueID: 3822340663
     locked: 0
