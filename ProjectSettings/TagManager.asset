@@ -44,6 +44,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Furniture
+    uniqueID: 2478158411
+    locked: 0
+  - name: Interactibles
+    uniqueID: 43370737
+    locked: 0
   - name: Faders
     uniqueID: 2648887585
     locked: 0
