@@ -7,15 +7,18 @@ using UnityEngine;
 
 public class PlayerController : Entity
 {
+    [Header("Player Stats")]
     public float playerActDistance;
-    public int room;
     public float moveSpeed;
     private bool isMoving;
+
+    [Header("Interactibles")]
+    #region
     public Entity[] interactibles;
     private Vector3 input;
     public Vector3 currentPosition;
     public GameObject myPrefab;
-
+    #endregion
     private void Start()
     {
         Rigidbody rb = GetComponent<Rigidbody>();
@@ -37,7 +40,7 @@ public class PlayerController : Entity
         }
         if (Input.GetKeyDown(KeyCode.F))
         {
-            if (interactible && Vector3.Distance(interactible.transform.position, currentPosition) < playerActDistance && interactible.myRoom == room)
+            if (interactible && Vector3.Distance(interactible.transform.position, currentPosition) < playerActDistance && interactible.myRoom == myRoom)
             {
                 Instantiate(myPrefab, currentPosition, Quaternion.identity);
                 Debug.Log(interactible.ReadText());
@@ -53,13 +56,13 @@ public class PlayerController : Entity
     {
         if (currentPosition.x < 7.55 && currentPosition.y < 5.55)
         {
-            room = 1;
+            myRoom = 1;
         }
         else if (currentPosition.x < 7.55 && currentPosition.y > 5.55)
         {
-            room = 2;
+            myRoom = 2;
         }
-        else { room = 3; }
+        else { myRoom = 3; }
     }
 
     public Entity ClosestObject(Vector3 origin, float range, IEnumerable<Entity> gameObjects)

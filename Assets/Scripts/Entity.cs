@@ -5,6 +5,12 @@ using UnityEngine;
 public class Entity : MonoBehaviour
 {
     public int myRoom;
+
+    public float resetTime;
+    public float resetCountdown;
+
+
+    [Header("Text Prompts")]
     public int stage;
     public string prompt;
     public string text1;
@@ -12,6 +18,8 @@ public class Entity : MonoBehaviour
     public string text3;
     public string failText;
     public string successText;
+
+
 
     void Start()
     {
@@ -33,13 +41,20 @@ public class Entity : MonoBehaviour
         {
             return text2;
         }
-        else
+        if (stage ==3)
         {
             return text3;
+        }
+        else
+        {
+            return successText;
         }
     }
     public void ProgressStage()
     {
-        stage++;
+        if (stage > 0 && stage < 4)
+        {
+            stage++;
+        }
     }
 }

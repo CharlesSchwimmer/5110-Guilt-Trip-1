@@ -12,7 +12,7 @@ public class Darkener : MonoBehaviour
 
     void Update()
     {
-        playerRoom = playerController.room;
+        playerRoom = playerController.myRoom;
         if (playerController && myRoom == playerRoom)
         {
             GetComponent<SpriteRenderer>().enabled = false;
