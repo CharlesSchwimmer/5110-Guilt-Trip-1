@@ -129,8 +129,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1903351}
   - component: {fileID: 1903352}
+  - component: {fileID: 1903353}
   m_Layer: 0
-  m_Name: PlantColor
+  m_Name: Plant
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -145,11 +146,13 @@ Transform:
   m_GameObject: {fileID: 1903350}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -16.492462, y: 2.8398404, z: 0.1017389}
   m_LocalScale: {x: 0.7, y: 0.7, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 83411029}
+  m_Children:
+  - {fileID: 83411029}
+  - {fileID: 465618005}
+  m_Father: {fileID: 1304025353}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1903352
 SpriteRenderer:
@@ -205,6 +208,26 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1903353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1903350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ff0e303438f3ff40a191ab1c93632f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myRoom: 1
+  stage: 1
+  prompt: Do you water the plants?
+  text1: You remember that you haven't watered the plants this week
+  text2: The leaves of plants began to turn yellow and dull.
+  text3: The branches of plants become bent and the leaves wither.
+  failText: Plants that have not been watered for a long time have withered and died
+  successText: After watering the kettle, the plants look healthy and shiny.
 --- !u!1 &5378985
 GameObject:
   m_ObjectHideFlags: 0
@@ -548,7 +571,7 @@ GameObject:
   - component: {fileID: 83411032}
   - component: {fileID: 83411033}
   m_Layer: 0
-  m_Name: Plant
+  m_Name: Pot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -563,13 +586,11 @@ Transform:
   m_GameObject: {fileID: 83411028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -16.492462, y: 2.8398404, z: 0.1017389}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.4285713, y: 1.4285713, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 465618005}
-  - {fileID: 1903351}
-  m_Father: {fileID: 1304025353}
+  m_Children: []
+  m_Father: {fileID: 1903351}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &83411030
 SpriteRenderer:
@@ -674,6 +695,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myRoom: 1
+  stage: 0
+  prompt: 
+  text1: 
+  text2: 
+  text3: 
+  failText: 
+  successText: 
 --- !u!1 &113900755
 GameObject:
   m_ObjectHideFlags: 0
@@ -1228,13 +1256,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 765d7de6599b6cb4c8cce5e3be20a1fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myRoom: 0
+  stage: 0
+  prompt: 
+  text1: 
+  text2: 
+  text3: 
+  failText: 
+  successText: 
   playerActDistance: 2.5
   room: 0
   moveSpeed: 3
   interactibles:
   - {fileID: 1397535841}
-  - {fileID: 83411033}
   - {fileID: 1045847073}
+  - {fileID: 1903353}
   currentPosition: {x: 0, y: 0, z: 0}
   myPrefab: {fileID: 1789065133962439014, guid: 4828cfe0b0289234d85d4357f504dfee, type: 3}
 --- !u!50 &285287805
@@ -2148,10 +2184,10 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.85, y: 0.85, z: 1}
+  m_LocalScale: {x: 1.2142857, y: 1.2142857, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 83411029}
+  m_Father: {fileID: 1903351}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &465618006
 SpriteRenderer:
@@ -4321,10 +4357,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 1045847071}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ff0e303438f3ff40a191ab1c93632f0, type: 3}
+  m_Script: {fileID: 11500000, guid: 5d86f9cefc775da4596a20fa0d8572e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   myRoom: 1
+  stage: 1
+  prompt: Do you do your homework?
+  text1: That was the homework left by the teacher after the last class.
+  text2: Yesterday plus today's homework is a bit much, but I still have a weekend
+    to finish it.
+  text3: The homework after class is piled high this week. Maybe I should start doing
+    my homework.
+  failText: Because there are too many homework unfinished, you are asked to make
+    a review in class and inform your parents.
+  successText: It took you a while to finish your homework, and finishing your homework
+    ahead of time gave you enough time to do other things.
 --- !u!1 &1048861581
 GameObject:
   m_ObjectHideFlags: 0
@@ -5122,7 +5169,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 83411029}
+  - {fileID: 1903351}
   - {fileID: 1397535840}
   - {fileID: 1045847072}
   m_Father: {fileID: 0}
@@ -5310,10 +5357,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 1397535838}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ff0e303438f3ff40a191ab1c93632f0, type: 3}
+  m_Script: {fileID: 11500000, guid: 9bfb9049bb35887428300714aeb3f29a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   myRoom: 1
+  stage: 1
+  prompt: Do you call Mom back?
+  text1: 
+  text2: The phone is ringing on the nightstand in your bedroom.
+  text3: You received a voice mail from mom. "Hey baby, you didn't pick up my phone
+    call yesterday and it was my birthday. Maybe you are just too busy. Take care
+    of yourself."
+  failText: Your mom called about her birthday but you didn't pick up the phone.She
+    still tries to care about you although she is super upset by the fact that you
+    forgot her birthday.
+  successText: 
 --- !u!1 &1429475020
 GameObject:
   m_ObjectHideFlags: 0
