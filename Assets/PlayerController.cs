@@ -11,9 +11,10 @@ public class PlayerController : MonoBehaviour
     public int room;
     public float moveSpeed;
     private bool isMoving;
-    public GameObject[] interactibles;
+    public Object[] interactibles;
     private Vector3 input;
     public Vector3 currentPosition;
+    public GameObject myPrefab;
 
     private void Start()
     {
@@ -24,17 +25,23 @@ public class PlayerController : MonoBehaviour
         Movement();
         Vector3 currentPosition = transform.position;
         RoomChecker(currentPosition);
-        GameObject interactible = ClosestObject(currentPosition, playerActDistance, interactibles);
+        Object interactible = ClosestObject(currentPosition, playerActDistance, interactibles);
         if (interactible != null && Vector3.Distance(interactible.transform.position, currentPosition) < playerActDistance)
         {
             Debug.Log(interactible.name);
         }
-       /* if (GetRoom(interactible) = room)
+        if(Input.GetKeyDown(KeyCode.F))
         {
+            if (interactible && Vector3.Distance(interactible.transform.position, currentPosition) < playerActDistance && interactible.myRoom == room)
+            {
+                Instantiate(myPrefab, currentPosition, Quaternion.identity);
 
+            }
+            else
+            {
+                return;
+            }
         }
-        //if (interactible.GetComponent<room>() = room)
-       */
     }
 
     private void RoomChecker(Vector3 currentPosition)
@@ -50,9 +57,9 @@ public class PlayerController : MonoBehaviour
         else { room = 3; }
     }
 
-    public GameObject ClosestObject(Vector3 origin, float range, IEnumerable<GameObject> gameObjects)
+    public Object ClosestObject(Vector3 origin, float range, IEnumerable<Object> gameObjects)
     {
-        GameObject closest = null;
+        Object closest = null;
         float closestSqrDist = 0f;
         foreach (var gameObject in gameObjects)
         {
@@ -70,4 +77,5 @@ public class PlayerController : MonoBehaviour
         Vector3 Movement = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
         transform.position += Movement * moveSpeed * Time.deltaTime;
     }
+
 }
