@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.PlasticSCM.Editor.WebApi;
 using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using static UnityEngine.UI.Image;
 
 public class PlayerController : Entity
 {
@@ -11,6 +13,9 @@ public class PlayerController : Entity
     public float playerActDistance;
     public float moveSpeed;
     private bool isMoving;
+    public float timeTracker = 0f;
+    public Vector3 originPosition;
+    public ResetFader resetFader;
 
     [Header("Interactibles")]
     #region
@@ -21,16 +26,34 @@ public class PlayerController : Entity
     #endregion
     private void Start()
     {
-        Rigidbody rb = GetComponent<Rigidbody>();
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        originPosition = rb.position;
     }
     private void Update()
     {
+        timeTracker += Time.deltaTime;
+        DayReset();
         Movement();
         Vector3 currentPosition = transform.position;
         RoomChecker(currentPosition);
         Entity interactible = ClosestObject(currentPosition, playerActDistance, interactibles);
         Interact(currentPosition, interactible);
     }
+
+    private void DayReset()
+    {
+        if (timeTracker >= 10f)
+        {
+            resetFader.SwitchBool(true);
+            foreach (var Entity in interactibles)
+            {
+                if (Entity.stage == 1 || Entity.stage == 2)
+                    Entity.stage++;
+            }
+            timeTracker = 0f;
+        }
+    }
+
 
     private void Interact(Vector3 currentPosition, Entity interactible)
     {
