@@ -5,10 +5,13 @@ using UnityEngine;
 public class Entity : MonoBehaviour
 {
     public int myRoom;
-
     public float resetTime;
     public float resetCountdown;
 
+    [Header("Sprites")]
+
+    public Sprite midStage;
+    public Sprite endStage;
 
     [Header("Text Prompts")]
     public int stage;
@@ -21,12 +24,12 @@ public class Entity : MonoBehaviour
 
 
 
+
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         
@@ -50,11 +53,19 @@ public class Entity : MonoBehaviour
             return successText;
         }
     }
-    public void ProgressStage()
+    public void ProgressStage(Sprite midStage, Sprite endStage)
     {
         if (stage > 0 && stage < 4)
         {
             stage++;
+        }
+        if(stage == 2)
+        {
+            gameObject.GetComponent<SpriteRenderer>().sprite = midStage;
+        }
+        if(stage ==3)
+        {
+            gameObject.GetComponent<SpriteRenderer>().sprite = endStage;
         }
     }
 }

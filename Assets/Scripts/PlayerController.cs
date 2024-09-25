@@ -7,9 +7,10 @@ using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using static UnityEngine.UI.Image;
 
-public class PlayerController : Entity
+public class PlayerController : MonoBehaviour
 {
     [Header("Player Stats")]
+    public int myRoom;
     public float playerActDistance;
     public float moveSpeed;
     private bool isMoving;
@@ -28,27 +29,30 @@ public class PlayerController : Entity
     {
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         originPosition = rb.position;
+        myRoom = 1;
     }
     private void Update()
     {
         timeTracker += Time.deltaTime;
         DayReset();
         Movement();
+
         Vector3 currentPosition = transform.position;
         RoomChecker(currentPosition);
         Entity interactible = ClosestObject(currentPosition, playerActDistance, interactibles);
         Interact(currentPosition, interactible);
+
     }
 
     private void DayReset()
     {
-        if (timeTracker >= 10f)
+        if (timeTracker >= 4f)
         {
             resetFader.SwitchBool(true);
             foreach (var Entity in interactibles)
             {
                 if (Entity.stage == 1 || Entity.stage == 2)
-                    Entity.stage++;
+                    Entity.ProgressStage(Entity.midStage, Entity.endStage);
             }
             timeTracker = 0f;
         }
@@ -107,5 +111,10 @@ public class PlayerController : Entity
     {
         Vector3 Movement = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
         transform.position += Movement * moveSpeed * Time.deltaTime;
+        Vector3 direction = Movement.normalized;
+        if (Movement != Vector3.zero)
+        {
+            transform.up = direction;
+        }
     }
 }

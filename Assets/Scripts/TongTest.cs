@@ -2,14 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Plant : Entity
+public class TongTest : MonoBehaviour
 {
+    private int number;
+
     void Start()
     {
-        
-    }
-    void Update()
-    {
+        number = 2;
     }
 
+    void Update()
+    {
+        number++;
+    }
 }
