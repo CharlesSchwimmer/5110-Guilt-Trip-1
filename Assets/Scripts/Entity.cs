@@ -68,4 +68,8 @@ public class Entity : MonoBehaviour
             gameObject.GetComponent<SpriteRenderer>().sprite = endStage;
         }
     }
+    
+    public void taskComplete(){
+        stage == 0;
+    }
 }
