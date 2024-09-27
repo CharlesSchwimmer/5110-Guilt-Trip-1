@@ -69,7 +69,7 @@ public class Entity : MonoBehaviour
         }
     }
     
-    public void taskComplete(){
-        stage == 0;
+    public void TaskComplete(){
+        stage = 0;
     }
 }

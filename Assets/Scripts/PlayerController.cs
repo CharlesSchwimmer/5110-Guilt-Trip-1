@@ -70,7 +70,9 @@ public class PlayerController : MonoBehaviour
             if (interactible && Vector3.Distance(interactible.transform.position, currentPosition) < playerActDistance && interactible.myRoom == myRoom)
             {
                 Instantiate(myPrefab, currentPosition, Quaternion.identity);
-                Debug.Log(interactible.ReadText());
+                // Debug.Log(interactible.ReadText());
+                PopUpBox popUpBox = GameObject.FindGameObjectWithTag("GameManager").GetComponent<PopUpBox>();
+                popUpBox.PopUp(interactible);
             }
             else
             {

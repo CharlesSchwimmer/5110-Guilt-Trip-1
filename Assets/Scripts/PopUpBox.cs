@@ -11,16 +11,22 @@ public class PopUpBox : MonoBehaviour
    public GameObject popUpBox;
    public Animator animator;
    public TMP_Text popUpText;
+   public Button buttonYes;
+   public Button buttonNo;
    public Entity entity;
 
-   public void popUp(Entity interactible){
+   void Start(){
+        buttonYes.onClick.AddListener(Respond);
+   }
+
+   public void PopUp(Entity interactible){
         entity = interactible;
         popUpBox.SetActive(true);
         popUpText.text = interactible.ReadText();
         animator.SetTrigger("pop");
    }
 
-   public void respond(){
-        entity.taskComplete();
+   public void Respond(){
+        entity.TaskComplete();
    }
 }
