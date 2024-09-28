@@ -9,6 +9,7 @@ public class Entity : MonoBehaviour
     public float resetCountdown;
 
     [Header("Sprites")]
+    public bool needsStages;
     public Sprite startStage;
     public Sprite midStage;
     public Sprite endStage;
@@ -27,7 +28,10 @@ public class Entity : MonoBehaviour
 
     void Start()
     {
-        gameObject.GetComponent<SpriteRenderer>().sprite = startStage;
+        if (needsStages)
+        {
+            gameObject.GetComponent<SpriteRenderer>().sprite = startStage;
+        }
     }
 
 void Update()
@@ -59,15 +63,15 @@ void Update()
         {
             stage++;
         }
-        if(stage == 2)
+        if(stage == 2 && needsStages)
         {
             gameObject.GetComponent<SpriteRenderer>().sprite = midStage;
         }
-        if(stage ==3)
+        if(stage ==3 && needsStages)
         {
             gameObject.GetComponent<SpriteRenderer>().sprite = endStage;
         }
-        if (stage == 0)
+        if (stage == 0 && needsStages)
         {
             gameObject.GetComponent<SpriteRenderer>().sprite = startStage;
         }

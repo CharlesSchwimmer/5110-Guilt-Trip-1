@@ -10,7 +10,9 @@ using static UnityEngine.UI.Image;
 public class PlayerController : MonoBehaviour
 {
     [Header("Player Stats")]
+    public Entity interactibleTracker;
     public int myRoom;
+    public float dayTimer;
     public float playerActDistance;
     public float moveSpeed;
     private bool isMoving;
@@ -21,7 +23,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Animator anim;
 
     [Header("Interactibles")]
-
     #region
     public Entity[] interactibles;
     private Vector3 input;
@@ -43,12 +44,12 @@ public class PlayerController : MonoBehaviour
         RoomChecker(currentPosition);
         Entity interactible = ClosestObject(currentPosition, playerActDistance, interactibles);
         Interact(currentPosition, interactible);
-
+        interactibleTracker = interactible;
     }
 
     private void DayReset()
     {
-        if (timeTracker >= 10f)
+        if (timeTracker >= dayTimer)
         {
             resetFader.SwitchBool(true);
             timeTracker = 0f;
@@ -60,14 +61,16 @@ public class PlayerController : MonoBehaviour
     {
         if (interactible != null && Vector3.Distance(interactible.transform.position, currentPosition) < playerActDistance)
         {
-            Debug.Log(interactible.name);
+            interactible.GetComponent<SpriteRenderer>().color = Color.yellow;
         }
+        else
+            interactible.GetComponent<SpriteRenderer>().color = Color.white;
         if (Input.GetKeyDown(KeyCode.F))
         {
             if (interactible && Vector3.Distance(interactible.transform.position, currentPosition) < playerActDistance && interactible.myRoom == myRoom)
             {
-                Instantiate(myPrefab, currentPosition, Quaternion.identity);
-                // Debug.Log(interactible.ReadText());
+                //Instantiate(myPrefab, currentPosition, Quaternion.identity);
+                //Debug.Log(interactible.ReadText());
                 PopUpBox popUpBox = GameObject.FindGameObjectWithTag("GameManager").GetComponent<PopUpBox>();
                 popUpBox.PopUp(interactible);
             }
