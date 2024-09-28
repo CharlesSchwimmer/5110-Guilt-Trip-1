@@ -14,6 +14,7 @@ public class PopUpBox : MonoBehaviour
    public Button buttonYes;
    public Button buttonNo;
    public Entity entity;
+   public AnimationEvent anim;
 
    void Start(){
         buttonYes.onClick.AddListener(Respond);

@@ -14,11 +14,14 @@ public class PlayerController : MonoBehaviour
     public float playerActDistance;
     public float moveSpeed;
     private bool isMoving;
+    public bool canMove = false;
     public float timeTracker = 0f;
     public Vector3 originPosition;
     public ResetFader resetFader;
+    [SerializeField] private Animator anim;
 
     [Header("Interactibles")]
+
     #region
     public Entity[] interactibles;
     private Vector3 input;
@@ -36,7 +39,6 @@ public class PlayerController : MonoBehaviour
         timeTracker += Time.deltaTime;
         DayReset();
         Movement();
-
         Vector3 currentPosition = transform.position;
         RoomChecker(currentPosition);
         Entity interactible = ClosestObject(currentPosition, playerActDistance, interactibles);
@@ -46,14 +48,9 @@ public class PlayerController : MonoBehaviour
 
     private void DayReset()
     {
-        if (timeTracker >= 4f)
+        if (timeTracker >= 10f)
         {
             resetFader.SwitchBool(true);
-            foreach (var Entity in interactibles)
-            {
-                if (Entity.stage == 1 || Entity.stage == 2)
-                    Entity.ProgressStage(Entity.midStage, Entity.endStage);
-            }
             timeTracker = 0f;
         }
     }
@@ -109,14 +106,27 @@ public class PlayerController : MonoBehaviour
         }
         return closest;
     }
+
     public void Movement()
     {
-        Vector3 Movement = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
-        transform.position += Movement * moveSpeed * Time.deltaTime;
-        Vector3 direction = Movement.normalized;
-        if (Movement != Vector3.zero)
+        if (!canMove)
         {
-            transform.up = direction;
+            anim.SetBool("Walking", false);
+            return;
+        }
+        else
+        {
+            Vector3 Movement = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
+            transform.position += Movement * moveSpeed * Time.deltaTime;
+            Vector3 direction = Movement.normalized;
+            if (Movement != Vector3.zero)
+            {
+                anim.SetBool("Walking", true);
+                transform.up = direction;
+            }
+            else
+                anim.SetBool("Walking", false);
+
         }
     }
 }

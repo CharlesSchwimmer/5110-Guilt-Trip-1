@@ -46,8 +46,9 @@ void Update()
             FadeIn(out newAlpha, out originalAlpha);
         }
     }
-        public void WorldReset()
+    public void WorldReset()
     {
+        playerController.canMove = false;
         float newAlpha;
         float originalAlpha;
         if (targetState == true)
@@ -57,10 +58,16 @@ void Update()
             {
                 playerController.transform.position = playerController.originPosition;
                 SwitchBool(false);
+                foreach (var Entity in playerController.interactibles)
+                {
+                    if (Entity.stage == 1 || Entity.stage == 2)
+                        Entity.ProgressStage(Entity.midStage, Entity.endStage);
+                }
             }
         }
         else
         {
+            playerController.canMove = true;
             FadeIn(out newAlpha, out originalAlpha);
         }
     }

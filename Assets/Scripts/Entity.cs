@@ -9,7 +9,7 @@ public class Entity : MonoBehaviour
     public float resetCountdown;
 
     [Header("Sprites")]
-
+    public Sprite startStage;
     public Sprite midStage;
     public Sprite endStage;
 
@@ -27,10 +27,10 @@ public class Entity : MonoBehaviour
 
     void Start()
     {
-        
+        gameObject.GetComponent<SpriteRenderer>().sprite = startStage;
     }
 
-    void Update()
+void Update()
     {
         
     }
@@ -67,9 +67,14 @@ public class Entity : MonoBehaviour
         {
             gameObject.GetComponent<SpriteRenderer>().sprite = endStage;
         }
+        if (stage == 0)
+        {
+            gameObject.GetComponent<SpriteRenderer>().sprite = startStage;
+        }
     }
     
     public void TaskComplete(){
         stage = 0;
+        gameObject.GetComponent<SpriteRenderer>().sprite = startStage;
     }
 }
