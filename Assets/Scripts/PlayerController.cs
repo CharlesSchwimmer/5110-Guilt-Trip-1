@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     public float timeTracker = 0f;
     public Vector3 originPosition;
     public ResetFader resetFader;
+    public TaskFader taskFader;
     [SerializeField] private Animator anim;
 
     [Header("Interactibles")]
@@ -34,6 +35,7 @@ public class PlayerController : MonoBehaviour
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         originPosition = rb.position;
         myRoom = 1;
+        canMove = true;
     }
     private void Update()
     {
@@ -67,17 +69,24 @@ public class PlayerController : MonoBehaviour
             interactible.GetComponent<SpriteRenderer>().color = Color.white;
         if (Input.GetKeyDown(KeyCode.F))
         {
-            if (interactible && Vector3.Distance(interactible.transform.position, currentPosition) < playerActDistance && interactible.myRoom == myRoom)
+            if (interactible && 
+                Vector3.Distance(interactible.transform.position, currentPosition) < playerActDistance && 
+                interactible.myRoom == myRoom &&
+                interactible.stage != 0)
             {
-                //Instantiate(myPrefab, currentPosition, Quaternion.identity);
-                //Debug.Log(interactible.ReadText());
+                PopUpBox popUpBox = GameObject.FindGameObjectWithTag("GameManager").GetComponent<PopUpBox>();
+                popUpBox.PopUp(interactible);
+            }
+            else if (interactible &&
+                Vector3.Distance(interactible.transform.position, currentPosition) < playerActDistance &&
+                interactible.myRoom == myRoom &&
+                interactible.stage == 0)
+            {
                 PopUpBox popUpBox = GameObject.FindGameObjectWithTag("GameManager").GetComponent<PopUpBox>();
                 popUpBox.PopUp(interactible);
             }
             else
-            {
                 return;
-            }
         }
     }
 
@@ -112,7 +121,7 @@ public class PlayerController : MonoBehaviour
 
     public void Movement()
     {
-        if (!canMove)
+        if (canMove == false)
         {
             anim.SetBool("Walking", false);
             return;

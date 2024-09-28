@@ -15,7 +15,7 @@ public class PopUpBox : MonoBehaviour
    public Button buttonNo;
    public Entity entity;
    public AnimationEvent anim;
-
+    public ResetFader ResetFader;
    void Start(){
         buttonYes.onClick.AddListener(Respond);
    }
@@ -27,7 +27,15 @@ public class PopUpBox : MonoBehaviour
         animator.SetTrigger("pop");
    }
 
-   public void Respond(){
+    public void DoneTask(Entity interactible)
+    {
+        entity = interactible;
+        popUpBox.SetActive(true);
+        popUpText.text = interactible.ReadText();
+        animator.SetTrigger("pop");
+    }
+
+    public void Respond(){
         entity.TaskComplete();
    }
 }

@@ -5,14 +5,15 @@ using UnityEngine;
 using System.Runtime.CompilerServices;
 using UnityEditor.Experimental.GraphView;
 
-public class ResetFader : MonoBehaviour
+public class TaskFader : MonoBehaviour
 {
     public bool targetState = false;
     private float transitionRate = 2f;
     public Image screenFader;
     private float currentAlpha = 0f;
     public PlayerController playerController;
-    private bool fadeInBool = false;
+    public bool resetter = false;
+
 
     void Start()
     {
@@ -23,46 +24,40 @@ public class ResetFader : MonoBehaviour
 
 void Update()
     {
-        if (targetState == true) 
-            WorldReset();
+        if (targetState == true)
+        {
+            taskComplete();
+        }
     }
     public void SwitchBool(bool newState)
     {
         targetState = newState;
     }
-
-    public void WorldReset()
+    public void taskComplete()
     {
+        playerController.canMove = false;
         float newAlpha;
         float originalAlpha;
-        if (fadeInBool == true)
+        if (resetter == false)
         {
-            FadeIn(out newAlpha, out originalAlpha);
-            if (screenFader.color.a <= 0f)
-            {
-                playerController.canMove = true;
-                SwitchBool(false);
-                fadeInBool = false;
-            }
-        }
-        if (targetState == true && fadeInBool ==false)
-        {
-            playerController.canMove = false;
             FadeOut(out newAlpha, out originalAlpha);
             if (screenFader.color.a >= 1f)
             {
-                playerController.transform.position = playerController.originPosition;
-                foreach (var Entity in playerController.interactibles)
-                {
-                    if (Entity.stage == 1 || Entity.stage == 2)
-                        Entity.ProgressStage(Entity.midStage, Entity.endStage);
-                   
-                }
-                fadeInBool = true;
+                resetter = true;
+            }
+        }
+        if (resetter == true)
+        {
+            FadeIn(out newAlpha, out originalAlpha);
+            if (screenFader.color.a == 0f)
+            {
+                playerController.canMove = true;
+                targetState = false;
+                resetter = false;
             }
         }
     }
-
+ 
     private void FadeIn(out float newAlpha, out float originalAlpha)
     {
         originalAlpha = screenFader.color.a;
