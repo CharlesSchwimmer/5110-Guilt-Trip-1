@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.PlasticSCM.Editor.WebApi;
+using TMPro;
 using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 using static UnityEngine.UI.Image;
 
 public class PlayerController : MonoBehaviour
@@ -153,14 +153,15 @@ public class PlayerController : MonoBehaviour
 
     public void EndGame()
     {
-        foreach (var gameObject in interactibles)
-        {
-            if (gameObject.stage != 0)
+        for(int i = 0; i < interactibles.Length; i++)
+            if (interactibles[i].stage == 0)
             {
-                
+                endScreen.Tasks[i].text = interactibles[i].successText;
             }
-        }
+            else
+            {
+                endScreen.Tasks[i].text = interactibles[i].failText;
+            }
         endScreen.GetComponent<Canvas>().enabled = true;
-        return;
     }
 }

@@ -5,12 +5,13 @@ using UnityEngine;
 
 public class EndGame : MonoBehaviour
 {
-    public TMP_Text text1;
+    public TMP_Text[] Tasks;
+
 
     //GetComponent<TextMeshProUGUI>().text = "Day: " + dayTracker.ToString() + " / 3";
     private void Start()
     {
-        text1.text = "fuck u".ToString();
+        //"fuck u".ToString();
     }
 
     private void Update()

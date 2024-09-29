@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 using System.Runtime.CompilerServices;
-using UnityEditor.Experimental.GraphView;
 
 public class TaskFader : MonoBehaviour
 {
