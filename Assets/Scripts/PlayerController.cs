@@ -9,8 +9,16 @@ using static UnityEngine.UI.Image;
 
 public class PlayerController : MonoBehaviour
 {
-    [Header("Player Stats")]
+
+    [Header("Connectors")]
     public Entity interactibleTracker;
+    public ResetFader resetFader;
+    public TaskFader taskFader;
+    [SerializeField] private Animator anim;
+    public TaskTracker taskTracker;
+    public EndGame endScreen;
+
+    [Header("Player Stats")]
     public int myRoom;
     public float dayTimer;
     public float playerActDistance;
@@ -19,10 +27,6 @@ public class PlayerController : MonoBehaviour
     public bool canMove = false;
     public float timeTracker;
     public Vector3 originPosition;
-    public ResetFader resetFader;
-    public TaskFader taskFader;
-    [SerializeField] private Animator anim;
-
     [Header("Interactibles")]
     #region
     public Entity[] interactibles;
@@ -40,7 +44,10 @@ public class PlayerController : MonoBehaviour
     }
     private void Update()
     {
-        timeTracker -= Time.deltaTime;
+        if (resetFader.isResetting == false)
+        {
+            timeTracker -= Time.deltaTime;
+        }
         DayReset();
         Movement();
         Vector3 currentPosition = transform.position;
@@ -70,13 +77,15 @@ public class PlayerController : MonoBehaviour
             interactible.GetComponent<SpriteRenderer>().color = Color.white;
         if (Input.GetKeyDown(KeyCode.F))
         {
-            if (interactible && 
-                Vector3.Distance(interactible.transform.position, currentPosition) < playerActDistance && 
+            if (interactible &&
+                Vector3.Distance(interactible.transform.position, currentPosition) < playerActDistance &&
                 interactible.myRoom == myRoom &&
                 interactible.stage != 0)
             {
                 PopUpBox popUpBox = GameObject.FindGameObjectWithTag("GameManager").GetComponent<PopUpBox>();
                 popUpBox.PopUp(interactible);
+                taskTracker.currentTasks += 1;
+
             }
             else if (interactible &&
                 Vector3.Distance(interactible.transform.position, currentPosition) < playerActDistance &&
@@ -139,7 +148,19 @@ public class PlayerController : MonoBehaviour
             }
             else
                 anim.SetBool("Walking", false);
-
         }
+    }
+
+    public void EndGame()
+    {
+        foreach (var gameObject in interactibles)
+        {
+            if (gameObject.stage != 0)
+            {
+                
+            }
+        }
+        endScreen.GetComponent<Canvas>().enabled = true;
+        return;
     }
 }

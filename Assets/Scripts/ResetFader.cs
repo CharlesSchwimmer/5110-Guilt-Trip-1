@@ -7,12 +7,17 @@ using UnityEditor.Experimental.GraphView;
 
 public class ResetFader : MonoBehaviour
 {
-    public bool targetState = false;
-    private float transitionRate = 1f;
-    public Image screenFader;
-    private float currentAlpha = 0f;
+    [Header("Connectors")]
+    public Image screenFader;          
     public PlayerController playerController;
+    public DayTracker dayTracker;
+
+    [Header("Trackers")]
+    public bool targetState = false;
+    private float transitionRate = .5f;
+    private float currentAlpha = 0f;
     private bool fadeInBool = false;
+    public bool isResetting = false;
 
     void Start()
     {
@@ -25,6 +30,10 @@ void Update()
     {
         if (targetState == true) 
             WorldReset();
+        if (targetState == false)
+        {
+            isResetting = false;
+        }
     }
     public void SwitchBool(bool newState)
     {
@@ -33,6 +42,7 @@ void Update()
 
     public void WorldReset()
     {
+        isResetting = true;
         float newAlpha;
         float originalAlpha;
         if (fadeInBool == true)
@@ -59,6 +69,7 @@ void Update()
                    
                 }
                 fadeInBool = true;
+                dayTracker.dayTracker++;
             }
         }
     }
