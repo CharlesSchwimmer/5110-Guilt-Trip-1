@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed;
     private bool isMoving;
     public bool canMove = false;
-    public float timeTracker = 0f;
+    public float timeTracker;
     public Vector3 originPosition;
     public ResetFader resetFader;
     public TaskFader taskFader;
@@ -36,10 +36,11 @@ public class PlayerController : MonoBehaviour
         originPosition = rb.position;
         myRoom = 1;
         canMove = true;
+        timeTracker = dayTimer;
     }
     private void Update()
     {
-        timeTracker += Time.deltaTime;
+        timeTracker -= Time.deltaTime;
         DayReset();
         Movement();
         Vector3 currentPosition = transform.position;
@@ -51,10 +52,10 @@ public class PlayerController : MonoBehaviour
 
     private void DayReset()
     {
-        if (timeTracker >= dayTimer)
+        if (timeTracker <= 0)
         {
             resetFader.SwitchBool(true);
-            timeTracker = 0f;
+            timeTracker = dayTimer;
         }
     }
 

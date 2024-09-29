@@ -8,7 +8,7 @@ using UnityEditor.Experimental.GraphView;
 public class TaskFader : MonoBehaviour
 {
     public bool targetState = false;
-    private float transitionRate = 2f;
+    private float transitionRate = .5f;
     public Image screenFader;
     private float currentAlpha = 0f;
     public PlayerController playerController;

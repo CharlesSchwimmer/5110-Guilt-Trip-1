@@ -8,7 +8,7 @@ using UnityEditor.Experimental.GraphView;
 public class ResetFader : MonoBehaviour
 {
     public bool targetState = false;
-    private float transitionRate = 2f;
+    private float transitionRate = 1f;
     public Image screenFader;
     private float currentAlpha = 0f;
     public PlayerController playerController;
