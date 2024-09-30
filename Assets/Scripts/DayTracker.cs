@@ -10,6 +10,7 @@ public class DayTracker : MonoBehaviour
     public int dayTracker;
     void Start()
     {
+        dayTracker = 1;
         GetComponent<TextMeshProUGUI>().text = "Day: " + dayTracker.ToString() + " / 3";
         endGame = false;
     }
@@ -23,6 +24,7 @@ public class DayTracker : MonoBehaviour
             {
                 Player.EndGame();
                 endGame = true;
+
             }
         }
     }

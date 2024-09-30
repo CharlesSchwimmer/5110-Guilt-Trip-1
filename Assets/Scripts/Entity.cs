@@ -8,6 +8,7 @@ public class Entity : MonoBehaviour
     public float resetTime;
     public float resetCountdown;
     public TaskFader taskFader;
+    public TaskTracker taskTracker;
 
     [Header("Sprites")]
     public bool needsStages;
@@ -34,21 +35,20 @@ public class Entity : MonoBehaviour
 
 void Update()
     {
-        
     }
     public string ReadText()
     {
         if (stage ==1)
         {
-            return text2 + "                                         " + prompt;
+            return text1 + "                                                             " + prompt;
         }
         if (stage == 2)
         {
-            return text2 + "                                         " + prompt;
+            return text2 + "                                                             " + prompt;
         }
         if (stage ==3)
         {
-            return text3 + "                                         " + prompt;
+            return text3 + "                                                             " + prompt;
         }
         if(stage ==0)
         {
@@ -81,6 +81,7 @@ void Update()
         if (stage > 0)
         {
             taskFader.SwitchBool(true);
+            taskTracker.currentTasks += 1;
         }
         stage = 0;
         gameObject.GetComponent<SpriteRenderer>().sprite = startStage;

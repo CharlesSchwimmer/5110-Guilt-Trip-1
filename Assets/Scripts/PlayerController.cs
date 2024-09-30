@@ -5,7 +5,6 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
-using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
 using static UnityEngine.UI.Image;
 
 public class PlayerController : MonoBehaviour
@@ -19,6 +18,7 @@ public class PlayerController : MonoBehaviour
     public TaskTracker taskTracker;
     public EndGame endScreen;
     public GameObject counter;
+    
 
     [Header("Player Stats")]
     public int myRoom;
@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
     public bool canMove = false;
     public float timeTracker;
     public Vector3 originPosition;
+    public bool ended = false;
     [Header("Interactibles")]
     #region
     public Entity[] interactibles;
@@ -86,8 +87,6 @@ public class PlayerController : MonoBehaviour
             {
                 PopUpBox popUpBox = GameObject.FindGameObjectWithTag("GameManager").GetComponent<PopUpBox>();
                 popUpBox.PopUp(interactible);
-                taskTracker.currentTasks += 1;
-
             }
             else if (interactible &&
                 Vector3.Distance(interactible.transform.position, currentPosition) < playerActDistance &&
@@ -167,8 +166,10 @@ public class PlayerController : MonoBehaviour
             else
             {
                 endScreen.Tasks[i].text = interactibles[i].failText;
+                endScreen.Tasks[i].color = Color.red;
             }
         counter.GetComponent<AudioSource>().enabled = false;
         endScreen.GetComponent<Canvas>().enabled = true;
+        ended = true;
     }
 }

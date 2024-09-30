@@ -33,7 +33,10 @@ void Update()
             WorldReset();
         if (targetState == false)
         {
-            counter.GetComponent<AudioSource>().enabled = true;
+            if (playerController.ended == false)
+            { 
+                counter.GetComponent<AudioSource>().enabled = true;
+            }
             isResetting = false;
         }
     }

@@ -259,6 +259,7 @@ MonoBehaviour:
   resetTime: 0
   resetCountdown: 0
   taskFader: {fileID: 1403332034}
+  taskTracker: {fileID: 1713697441}
   needsStages: 1
   startStage: {fileID: 5960713649519986423, guid: 3ddfefe8fd4dd48469552224d1961813, type: 3}
   midStage: {fileID: 6941706853065814016, guid: 40fd9ed84340d404284d51ed0681b367, type: 3}
@@ -1544,6 +1545,7 @@ MonoBehaviour:
   resetTime: 0
   resetCountdown: 0
   taskFader: {fileID: 1403332034}
+  taskTracker: {fileID: 1713697441}
   needsStages: 0
   startStage: {fileID: -6594624616343979375, guid: b682a95af74cf5347bb1b40d3287be19, type: 3}
   midStage: {fileID: 0}
@@ -1555,11 +1557,11 @@ MonoBehaviour:
   text2: The vegetables smell a bit weird. You try hard not to think about it.
   text3: 'Your rotten vegetables are thrown out into the garbage bin, and you find
     an accusing note on the fridge: "Your vegetables stained my food!! You should
-    deal with them by yourself earlier!"'
+    have dealt with them by yourself earlier!"'
   failText: You leave the vegetables you bought for days in the fridge, and eat fast
     food all day. The rotten vegetable stained your roommate's food and he had to
     take all of them out by himself.
-  successText: You eat a healthy (?) meal and you feel better now.
+  successText: You eat a healthy(ish) meal and you feel better now.
 --- !u!1 &186551555
 GameObject:
   m_ObjectHideFlags: 0
@@ -2293,13 +2295,14 @@ MonoBehaviour:
   endScreen: {fileID: 780466226}
   counter: {fileID: 1867873798}
   myRoom: 0
-  dayTimer: 20
+  dayTimer: 60
   playerActDistance: 2.5
   moveSpeed: 1.5
   isMoving: 0
   canMove: 0
   timeTracker: 0
   originPosition: {x: 0, y: 0, z: 0}
+  ended: 0
   interactibles:
   - {fileID: 1903357}
   - {fileID: 1045847075}
@@ -3534,6 +3537,7 @@ MonoBehaviour:
   resetTime: 0
   resetCountdown: 0
   taskFader: {fileID: 1403332034}
+  taskTracker: {fileID: 1713697441}
   needsStages: 0
   startStage: {fileID: 7084664683199108552, guid: add1e921e36ad204da6622b6bb233443, type: 3}
   midStage: {fileID: 0}
@@ -4563,8 +4567,8 @@ GameObject:
   m_Component:
   - component: {fileID: 637305387}
   - component: {fileID: 637305390}
-  - component: {fileID: 637305389}
   - component: {fileID: 637305391}
+  - component: {fileID: 637305389}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -5430,6 +5434,7 @@ MonoBehaviour:
   resetTime: 0
   resetCountdown: 0
   taskFader: {fileID: 1403332034}
+  taskTracker: {fileID: 1713697441}
   needsStages: 0
   startStage: {fileID: -8038427624107590858, guid: 4f45c63ca0593324d9d163995b81823c, type: 3}
   midStage: {fileID: 0}
@@ -6280,6 +6285,7 @@ MonoBehaviour:
   resetTime: 0
   resetCountdown: 0
   taskFader: {fileID: 1403332034}
+  taskTracker: {fileID: 1713697441}
   needsStages: 1
   startStage: {fileID: -2767397494367531471, guid: 2b34bb8355a0aac40ba53adc99827a74, type: 3}
   midStage: {fileID: 7191431340547154135, guid: e120c7005f9cb4945a4261ed70aabf41, type: 3}
@@ -7173,6 +7179,7 @@ MonoBehaviour:
   resetTime: 0
   resetCountdown: 0
   taskFader: {fileID: 1403332034}
+  taskTracker: {fileID: 1713697441}
   needsStages: 1
   startStage: {fileID: -5597995755193609183, guid: 39d9cb058b7a1cf49ac4fb71149ecdac, type: 3}
   midStage: {fileID: -8857946688505897167, guid: a6db9920b053aa8499fd7c860903fdf4, type: 3}
@@ -7496,6 +7503,7 @@ MonoBehaviour:
   resetTime: 0
   resetCountdown: 0
   taskFader: {fileID: 1403332034}
+  taskTracker: {fileID: 1713697441}
   needsStages: 1
   startStage: {fileID: -4783944204260527926, guid: 1036c3635799a3544b0975dbeda42f72, type: 3}
   midStage: {fileID: 8788468743459660641, guid: 3752e984171da2b43afb5f67a9365c50, type: 3}
@@ -7992,7 +8000,7 @@ RectTransform:
   m_GameObject: {fileID: 1256752582}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1278427482}
@@ -8687,6 +8695,7 @@ MonoBehaviour:
   resetTime: 0
   resetCountdown: 0
   taskFader: {fileID: 1403332034}
+  taskTracker: {fileID: 1713697441}
   needsStages: 0
   startStage: {fileID: 191133435448053263, guid: 101014a979fac9747bcfcebd6742ac6b, type: 3}
   midStage: {fileID: 0}
@@ -9279,10 +9288,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -9588,6 +9597,7 @@ MonoBehaviour:
   resetTime: 0
   resetCountdown: 0
   taskFader: {fileID: 1403332034}
+  taskTracker: {fileID: 1713697441}
   needsStages: 0
   startStage: {fileID: -7567199704733070752, guid: 0de9f8dd09a46394a95b427854f4fdd7, type: 3}
   midStage: {fileID: 0}
@@ -10317,6 +10327,7 @@ MonoBehaviour:
   resetTime: 0
   resetCountdown: 0
   taskFader: {fileID: 1403332034}
+  taskTracker: {fileID: 1713697441}
   needsStages: 0
   startStage: {fileID: -6143294736338543782, guid: 2fd4d6104314500448c26ad37802d477, type: 3}
   midStage: {fileID: 0}
@@ -10685,6 +10696,7 @@ MonoBehaviour:
   resetTime: 0
   resetCountdown: 0
   taskFader: {fileID: 1403332034}
+  taskTracker: {fileID: 1713697441}
   needsStages: 0
   startStage: {fileID: 3275810401724867860, guid: 72b0b9588f229c244952e9685161ae81, type: 3}
   midStage: {fileID: 3275810401724867860, guid: 72b0b9588f229c244952e9685161ae81, type: 3}
@@ -10700,8 +10712,8 @@ MonoBehaviour:
     forgot her birthday.
   failText: Your mother told you the next time she saw you that you don't love her
     anymore.
-  successText: It is your mom calling you about her birthday. She is glad that you
-    didn't forget about it.
+  successText: You called your mother back regarding her birthday. She is glad that
+    you didn't forget about it.
 --- !u!1 &1713697439
 GameObject:
   m_ObjectHideFlags: 0
