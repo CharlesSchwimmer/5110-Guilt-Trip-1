@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 using System.Runtime.CompilerServices;
+using System.Threading;
 
 public class ResetFader : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class ResetFader : MonoBehaviour
     public Image screenFader;          
     public PlayerController playerController;
     public DayTracker dayTracker;
+    public GameObject counter;
 
     [Header("Trackers")]
     public bool targetState = false;
@@ -31,6 +33,7 @@ void Update()
             WorldReset();
         if (targetState == false)
         {
+            counter.GetComponent<AudioSource>().enabled = true;
             isResetting = false;
         }
     }
@@ -42,6 +45,8 @@ void Update()
     public void WorldReset()
     {
         isResetting = true;
+        counter.GetComponent<AudioSource>().enabled = false;
+
         float newAlpha;
         float originalAlpha;
         if (fadeInBool == true)

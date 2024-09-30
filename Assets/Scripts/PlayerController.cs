@@ -5,6 +5,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
+using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
 using static UnityEngine.UI.Image;
 
 public class PlayerController : MonoBehaviour
@@ -17,13 +18,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Animator anim;
     public TaskTracker taskTracker;
     public EndGame endScreen;
+    public GameObject counter;
 
     [Header("Player Stats")]
     public int myRoom;
     public float dayTimer;
     public float playerActDistance;
     public float moveSpeed;
-    private bool isMoving;
+    public bool isMoving;
     public bool canMove = false;
     public float timeTracker;
     public Vector3 originPosition;
@@ -144,10 +146,14 @@ public class PlayerController : MonoBehaviour
             if (Movement != Vector3.zero)
             {
                 anim.SetBool("Walking", true);
+                isMoving = true;
                 transform.up = direction;
             }
             else
+            {
                 anim.SetBool("Walking", false);
+                isMoving = false;
+            }
         }
     }
 
@@ -162,6 +168,7 @@ public class PlayerController : MonoBehaviour
             {
                 endScreen.Tasks[i].text = interactibles[i].failText;
             }
+        counter.GetComponent<AudioSource>().enabled = false;
         endScreen.GetComponent<Canvas>().enabled = true;
     }
 }
